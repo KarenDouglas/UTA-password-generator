@@ -21,13 +21,12 @@ function generatePassword(){
   let newString = '';
   const lowercase = 'abcdefghijklmnopqrstuvwxyz';
   const uppercase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-  const specialChar= '!@#$%^&*()_-+=<>?{}[]|\/:;,.~';
+  const specialChar= '!@#$%^&*()_-+=<>?{}[]|:;,.';
   const numeric = '0123456789';
   let  temp = '';
 
   function generateChar(characterType){
-    const num = Math.floor(Math.random() * characterType.length)
-    temp += characterType
+    const num = (Math.floor(Math.random() * characterType.length))  
       return characterType[num]
   }
 
@@ -38,15 +37,19 @@ function generatePassword(){
           switch (characterTypes[i]) {
             case "lowercase":
                   newString += generateChar(lowercase);
+                  temp += lowercase
                 break;
             case "uppercase":
               newString += generateChar(uppercase);
+              temp += uppercase
                 break;
             case "numeric":
               newString += generateChar(numeric);
+              temp += numeric
                   break;
             case "special":
               newString += generateChar(specialChar);
+              temp += specialChar
                   break;
             default:
                 break;
@@ -62,6 +65,7 @@ function generatePassword(){
     confirm('must be no longer than 128 characters')
     return
   }else{
+    console.log(passwordLength)
       confirmCharacterTypes()
     if(newString.length){
       for(let i = newString.length-1; i < passwordLength-1; i++){
